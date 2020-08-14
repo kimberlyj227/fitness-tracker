@@ -4,7 +4,7 @@ const express = require("express")
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models/Workout.js");
+
 const app = express();
 
 app.use(logger("dev"));
@@ -22,6 +22,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessDB", {
 
 require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
+// require("./seeders/seed.js");
 
 
 
