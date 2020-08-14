@@ -11,8 +11,8 @@ fetch("/api/workouts/range")
 
 API.getWorkoutsInRange()
 
-  function generatePalette() {
-    const arr = [
+function generatePalette() {
+  const arr = [
     "#003f5c",
     "#2f4b7c",
     "#665191",
@@ -32,7 +32,8 @@ API.getWorkoutsInRange()
   ]
 
   return arr;
-  }
+}
+
 function populateChart(data) {
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
@@ -56,15 +57,13 @@ function populateChart(data) {
         "Friday",
         "Saturday"
       ],
-      datasets: [
-        {
-          label: "Workout Duration In Minutes",
-          backgroundColor: "red",
-          borderColor: "red",
-          data: durations,
-          fill: false
-        }
-      ]
+      datasets: [{
+        label: "Workout Duration In Minutes",
+        backgroundColor: "red",
+        borderColor: "red",
+        data: durations,
+        fill: false
+      }]
     },
     options: {
       responsive: true,
@@ -72,22 +71,18 @@ function populateChart(data) {
         display: true
       },
       scales: {
-        xAxes: [
-          {
-            display: true,
-            scaleLabel: {
-              display: true
-            }
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true
           }
-        ],
-        yAxes: [
-          {
-            display: true,
-            scaleLabel: {
-              display: true
-            }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true
           }
-        ]
+        }]
       }
     }
   });
@@ -104,29 +99,27 @@ function populateChart(data) {
         "Friday",
         "Saturday",
       ],
-      datasets: [
-        {
-          label: "Pounds",
-          data: pounds,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)"
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)"
-          ],
-          borderWidth: 1
-        }
-      ]
+      datasets: [{
+        label: "Pounds",
+        data: pounds,
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)"
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)"
+        ],
+        borderWidth: 1
+      }]
     },
     options: {
       title: {
@@ -134,13 +127,11 @@ function populateChart(data) {
         text: "Pounds Lifted"
       },
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true
-            }
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
           }
-        ]
+        }]
       }
     }
   });
@@ -149,13 +140,11 @@ function populateChart(data) {
     type: "pie",
     data: {
       labels: workouts,
-      datasets: [
-        {
-          label: "Excercises Performed",
-          backgroundColor: colors,
-          data: durations
-        }
-      ]
+      datasets: [{
+        label: "Excercises Performed",
+        backgroundColor: colors,
+        data: durations
+      }]
     },
     options: {
       title: {
@@ -169,13 +158,11 @@ function populateChart(data) {
     type: "doughnut",
     data: {
       labels: workouts,
-      datasets: [
-        {
-          label: "Excercises Performed",
-          backgroundColor: colors,
-          data: pounds
-        }
-      ]
+      datasets: [{
+        label: "Excercises Performed",
+        backgroundColor: colors,
+        data: pounds
+      }]
     },
     options: {
       title: {
@@ -218,6 +205,6 @@ function workoutNames(data) {
       workouts.push(exercise.name);
     });
   });
-  
+
   return workouts;
 }

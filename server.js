@@ -1,16 +1,33 @@
 const mongoose = require("mongoose");
-const Exercise = require("./exerciseModel.js");
+const logger = require("morgan");
+const express = require("express")
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessDB", {useNewUrlParser: true});
+const PORT = process.env.PORT || 3000;
 
-const data = {
+const db = require("./models/Workout.js");
+const app = express();
 
-};
+app.use(logger("dev"));
 
-Exercise.create(data)
-  .then(fitnessDB => {
-    console.log(fitnessDB);
-  })
-  .catch( ({ message }) => {
-    console.log(message);
-  });
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(express.json());
+
+app.use(express.static("public"));
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessDB", {
+  useNewUrlParser: true
+});
+
+require("./routes/htmlRoutes.js")(app);
+require("./routes/apiRoutes.js")(app);
+
+
+
+
+// start server
+app.listen(PORT, () => {
+  console.log((`App running on port ${PORT}`));
+
+})
