@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessDB", {
 
 require("./routes/htmlRoutes.js")(app);
 require("./routes/apiRoutes.js")(app);
-// require("./seeders/seed.js");
+require("./seeders/seed.js");
 
 
 
