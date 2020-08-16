@@ -15,7 +15,7 @@ module.exports = app => {
 
   // GET /api/workouts/range
   app.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({})
+    db.Workout.find({}).limit(7)
     .then(dbWorkouts =>{
       res.json(dbWorkouts);
     }) 
@@ -40,6 +40,7 @@ module.exports = app => {
   app.put("/api/workouts/:id", ({body, params}, res) => {
     const id = params.id;
     let savedEx = [];
+
     db.Workout.find({_id: id})
     .then(dbWorkout => {
       savedEx = dbWorkout[0].exercises;
